@@ -161,7 +161,7 @@
     };
 
     // 서버에 데이터 전송
-    fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416/career`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/rest/mypage/6249388071526484416/career`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // JSON 형식으로 전송
@@ -190,7 +190,7 @@
         careerId : careerId
     };
     
-    fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416/career`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/rest/mypage/6249388071526484416/career`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json' // JSON 형식으로 전송
@@ -218,7 +218,7 @@
   const skills = ref([]);
 
   const GetAllSkill = async()=>{
-        await fetch(`http://localhost:8000/member-service/skill/skills`).then(response => {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/skill/skills`).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -257,7 +257,7 @@
             };
         });
         // 서버에 데이터 전송
-        fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416/skill`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/rest/mypage/6249388071526484416/skill`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -282,7 +282,7 @@
     
 
     const GetAllRecCate = async()=>{
-        await fetch(`http://localhost:8000/board-service/recruit/recruit-categories`).then(response => {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/recruit-categories`).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -322,7 +322,7 @@
             };
         });
         // 서버에 데이터 전송
-        fetch(`http://localhost:8000/board-service/recruit/recruit-categories/profile/6249388071526484416`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/recruit-categories/profile/6249388071526484416`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

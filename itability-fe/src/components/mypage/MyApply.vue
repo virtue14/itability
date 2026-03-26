@@ -47,7 +47,7 @@
     }
     // 내 모집글 정보 요청
     const fetchData = async() => {
-        await fetch(`http://localhost:8000/board-service/member_recruits/member-apply-list/6249388071526484416`)
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/member-apply-list/6249388071526484416`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -65,7 +65,7 @@
     fetchData();
 
     const deleteApply = async(memberRecruitInfoId) => {
-        await fetch(`http://localhost:8000/board-service/member_recruits/${memberRecruitInfoId}`,{
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/${memberRecruitInfoId}`,{
             method: 'DELETE'
         }).then(response => {
             if (!response.ok) {

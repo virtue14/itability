@@ -128,7 +128,7 @@
         followerCount: 0
     });
     const GetFollow = async()=>{
-        await fetch(`http://localhost:8000/member-service/follow/follows/6249388071526484416`).then(response => {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/follow/follows/6249388071526484416`).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -145,7 +145,7 @@
         });
     };
     const GetFollower = async()=>{
-        await fetch(`http://localhost:8000/member-service/follow/followers/6249388071526484416`).then(response => {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/follow/followers/6249388071526484416`).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -176,7 +176,7 @@ const fetchData = async () => {
         //     'Cookie': cookies // 쿠키를 요청 헤더에 포함합니다.
         // }
     };
-    await fetch(`http://localhost:8000/member-service/rest/mypage/6249388071526484416`)
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/rest/mypage/6249388071526484416`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -226,7 +226,7 @@ const fetchData = async () => {
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch(`http://localhost:8000/member-service/image/profile/${memberId.value}`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/image/profile/${memberId.value}`, {
             method: 'PATCH',
             body: formData
         })
@@ -264,7 +264,7 @@ const fetchData = async () => {
 
     const submitForm = () => {
         // fetch를 사용하여 서버에 수정된 정보 전송
-        fetch(`http://localhost:8000/member-service/rest/mypage/${memberId.value}`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/rest/mypage/${memberId.value}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'

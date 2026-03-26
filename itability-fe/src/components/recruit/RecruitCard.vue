@@ -20,7 +20,7 @@
     const fetchSkillList = async() => {
 
         try {
-            const response = await fetch(`http://localhost:8000/board-service/recruit/recruit-skill/${props.recruit.recruitId}`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/recruit-skill/${props.recruit.recruitId}`);
 
             if (!response.ok) {
                 throw new Error('Error!');
@@ -41,7 +41,7 @@
     // })
 
     // const fetchMemberInfo = async(id) => {
-    //     const response = await fetch(`http://localhost:8000/member-service/info/member/${id}`);
+    //     const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/info/member/${id}`);
     //     const data = await response.json();
 
     //     console.log(data);

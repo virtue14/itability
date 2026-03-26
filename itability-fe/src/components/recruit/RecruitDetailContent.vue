@@ -34,7 +34,7 @@
     };
 
     // try {
-    //   const response = await fetch(`http://localhost:8000/board-service/member_recruits/regist`, {
+    //   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/regist`, {
     //       method: 'POST',
     //       headers: {
     //       'Content-Type': 'application/json'
@@ -46,7 +46,7 @@
     //       throw new Error('Network response was not ok');
     //   }
 
-    axios.post('http://localhost:8000/board-service/member_recruits/regist', postData)
+    axios.post('${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/regist', postData)
       .then(response => {
           alert('신청 완료');
           

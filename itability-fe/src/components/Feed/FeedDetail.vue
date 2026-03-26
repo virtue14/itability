@@ -54,8 +54,8 @@ const route = useRoute();
 
 // 프로필 이미지를 가져오는 함수입니다.
 const GetAllSkill = async()=>{
-  // await fetch(`http://localhost:8000/member-service/skill/skills`).then(response => {
-  await fetch(`http://localhost:8000/member-service/image/profile/6249388071526484416`).then(response => {
+  // await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/skill/skills`).then(response => {
+  await fetch(`${import.meta.env.VITE_API_BASE_URL}/member-service/image/profile/6249388071526484416`).then(response => {
     if (!response.ok) {
       throw new Error();
     }
@@ -79,7 +79,7 @@ onMounted(async () => {
     return;
   }
   try {
-    const response = await fetch(`http://localhost:8000/board-service/feeds/${boardId}`);
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/${boardId}`);
     if (!response.ok) throw new Error('Error fetching feed details');
     feed.value = await response.json();
     // 프로필 이미지를 가져오는 함수를 호출합니다.
@@ -96,7 +96,7 @@ const submitComment = async () => {
     return;
   }
   try {
-    const response = await fetch(`http://localhost:8000/board-service/feeds/${feed.value.boardId}/comments`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/${feed.value.boardId}/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cmtContent: newComment.value })

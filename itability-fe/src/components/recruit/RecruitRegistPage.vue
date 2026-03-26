@@ -73,7 +73,7 @@
     };
     
     
-    axios.post('http://localhost:8000/board-service/recruit/regist', postData)
+    axios.post('${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/regist', postData)
     .then(response => {
         alert('등록이 완료되었습니다.');
         

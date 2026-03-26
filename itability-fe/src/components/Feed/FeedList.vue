@@ -70,7 +70,7 @@ const goToFeedCreate = () => {
 // API에서 피드 데이터를 가져오는 함수
 const fetchData = async () => {
   try {
-    const response = await fetch('http://localhost:8000/board-service/feeds/listFeed');
+    const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/listFeed');
     if (!response.ok) throw new Error('Network response was not ok');
     feeds.value = await response.json();
   } catch (error) {

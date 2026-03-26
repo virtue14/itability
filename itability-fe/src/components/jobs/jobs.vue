@@ -29,7 +29,7 @@
   // DB에서 데이터를 가져오는 함수
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/board-service/job-listings`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/job-listings`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

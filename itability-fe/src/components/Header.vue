@@ -3,8 +3,8 @@
     <div class="header-content">
       <div class="logo-and-nav">
         <nav class="nav-links">
-          <a href="http://localhost:5173">
-          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/683a152700baf48589f359acad675666562bef59cc2ceabdcb0265e61dac2b33?apiKey=79a2b7eb54dd4ed5b8fcf22467729821&" alt="Company Logo" class="logo" />
+          <a href="/">
+          <img :src="`https://cdn.builder.io/api/v1/image/assets/TEMP/683a152700baf48589f359acad675666562bef59cc2ceabdcb0265e61dac2b33?apiKey=${builderApiKey}&`" alt="Company Logo" class="logo" />
           </a>
 
           <span style="cursor: pointer;" @click="changeRouter('/')">피드</span>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="auth-links">
-        <a href="http://localhost:5173/login" class="auth-link">로그인 · 회원가입</a>
+        <a href="/login" class="auth-link">로그인 · 회원가입</a>
       </div>
     </div>
   </header>
@@ -178,6 +178,7 @@ a {
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const builderApiKey = import.meta.env.VITE_BUILDER_API_KEY;
 
   const changeRouter = (path) => {
     // Vue Router의 push 메서드를 사용하여 해당 경로로 이동
@@ -199,7 +200,7 @@ export default {
   methods: {
     async fetchWeather() {
       const city = 'Seoul';
-      const apiKey = 'aa237cabd8bd6dd1e5374da90756d5b5';
+      const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
       try {

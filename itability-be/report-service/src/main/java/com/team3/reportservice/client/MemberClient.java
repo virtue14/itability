@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.util.List;
 
 
-@FeignClient(name="itability-member-service", url="localhost:8000")
+@FeignClient(name="itability-member-service", url="${gateway.url}")
 public interface MemberClient {
 
     /* 설명. gateway가 알고있는 마이크로 서비스의 접두사(라우팅 시 설정한 요청 경로)를 추가해서 요청경로를 작성한다. */

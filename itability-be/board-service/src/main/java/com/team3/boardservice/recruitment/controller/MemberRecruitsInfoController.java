@@ -55,7 +55,7 @@ public class MemberRecruitsInfoController {
         System.out.println(memberRecruitsInfo);
         MemberRecruitsInfoDTO memberRecruits = memberRecruitsInfoService.registMemberRecruit(memberRecruitsInfo);
 
-        return ResponseEntity.ok("/localhost:5173/recruit");
+        return ResponseEntity.ok("/recruit");
 //        /" + memberRecruitsInfo.getRecruitId()
     }
 

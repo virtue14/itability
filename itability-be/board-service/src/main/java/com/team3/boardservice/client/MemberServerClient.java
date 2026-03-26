@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name="itability-member-service", url="localhost:8000")
+@FeignClient(name="itability-member-service", url="${gateway.url}")
 public interface MemberServerClient {
 
     @GetMapping("/member-service/info/member/{memberId}")

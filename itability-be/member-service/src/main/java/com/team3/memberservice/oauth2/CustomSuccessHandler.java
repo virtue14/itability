@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.io.IOException;
 
 @Component
@@ -21,6 +23,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private final JWTUtil jwtUtil;
     private final MemberInfoRepo memberInfoRepository;
+
+    @Value("${app.frontend-url}")
+    private String frontendUrl;
 
     @Autowired
     public CustomSuccessHandler(JWTUtil jwtUtil, MemberInfoRepo memberInfoRepository) {
@@ -56,7 +61,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         response.addCookie(tokenCookie);
 
         // 리다이렉트
-        response.sendRedirect("http://localhost:5173/"); // 프론트엔드 URL에 따라 조정
+        response.sendRedirect(frontendUrl); // 프론트엔드 URL에 따라 조정
     }
 
     private Cookie createCookie(String key, String value) {

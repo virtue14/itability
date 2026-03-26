@@ -67,7 +67,7 @@
 
     // 내 모집글 정보 요청
     const fetchData = async() => {
-        await fetch(`http://localhost:8000/board-service/recruit/member/6249388071526484416`)
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/member/6249388071526484416`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -102,7 +102,7 @@
     // 모집글 수정
     const saveEditedrecruit = async () => {
         try {
-        const response = await fetch(`http://localhost:8000/board-service/recruit/modify/${editedrecruit.value.recruitId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/modify/${editedrecruit.value.recruitId}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'
@@ -136,7 +136,7 @@
     // 해당 모집글의 신청인원들 조회(대기중인사람만)
     const showWaitMembers = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/board-service/member_recruits/list/${rec.value.recruitId}`)
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/list/${rec.value.recruitId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -158,7 +158,7 @@
     // 신청 수락
     const acceptRecruit = async (memberRecruitInfoId, index) => {
         try{
-            const response = await fetch(`http://localhost:8000/board-service/member_recruits/accept/${memberRecruitInfoId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/accept/${memberRecruitInfoId}`, {
             method: 'PUT',
             })
             .then(response => {
@@ -175,7 +175,7 @@
     // 신청 거절
     const denyRecruit = async (memberRecruitInfoId) => {
         try{
-            const response = await fetch(`http://localhost:8000/board-service/member_recruits/reject/${memberRecruitInfoId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/reject/${memberRecruitInfoId}`, {
             method: 'PUT',
             })
             .then(response => {
@@ -192,7 +192,7 @@
     // 모집글 삭제
     const deleteRecruit = async (recruitId) => {
         try {
-            const response = await fetch(`http://localhost:8000/board-service/recruit/${recruitId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/${recruitId}`, {
                 method: 'DELETE',
                 headers: {
                 'Content-Type': 'application/json'

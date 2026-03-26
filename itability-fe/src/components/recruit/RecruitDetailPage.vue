@@ -25,7 +25,7 @@
             return; // ID가 없으면 함수 실행을 중지합니다.
         }
         try {
-            const response = await fetch(`http://localhost:8000/board-service/recruit/${recruitId}`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/${recruitId}`);
             const data = await response.json();
             state.recruit = data;
 

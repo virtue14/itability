@@ -63,7 +63,7 @@
 
     // 내 게시글 정보 요청
     const fetchData = async () => {
-        await fetch(`http://localhost:8000/board-service/feeds/member/6249388071526484416`)
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/member/6249388071526484416`)
         .then(response => {
             if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -106,7 +106,7 @@
     // 게시물 수정
     const saveEditedFeed = async () => {
         try {
-        const response = await fetch(`http://localhost:8000/board-service/feeds/${editedFeed.value.boardId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/${editedFeed.value.boardId}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'
@@ -130,7 +130,7 @@
     // 게시물 삭제
     const deleteFeed = async (boardId) => {
         try {
-            const response = await fetch(`http://localhost:8000/board-service/feeds/${boardId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/${boardId}`, {
                 method: 'DELETE',
                 headers: {
                 'Content-Type': 'application/json'

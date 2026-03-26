@@ -53,9 +53,9 @@ public class GoogleServiceImpl implements GoogleService {
         // 서버로 요청을 보낼 파라미터 구성
         StringBuilder sb = new StringBuilder();
         sb.append("code=").append(URLEncoder.encode(code, "UTF-8"));
-        sb.append("&client_id=").append(URLEncoder.encode("529642165041-sv8fd7c0sb7to66f25t1h98av3qhmomv.apps.googleusercontent.com", "UTF-8"));
-        sb.append("&client_secret=").append(URLEncoder.encode("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", "UTF-8"));
-        sb.append("&redirect_uri=").append(URLEncoder.encode("http://localhost:8080/login/google", "UTF-8"));
+        sb.append("&client_id=").append(URLEncoder.encode(clientId, "UTF-8"));
+        sb.append("&client_secret=").append(URLEncoder.encode(clientSecret, "UTF-8"));
+        sb.append("&redirect_uri=").append(URLEncoder.encode(redirectUri, "UTF-8"));
         sb.append("&grant_type=authorization_code");
 
         // 서버로 요청 보내기

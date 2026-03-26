@@ -51,7 +51,7 @@ const savePost = async () => {
   };
 
   try {
-    const response = await fetch(`http://localhost:8000/board-service/feeds/${memberId}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/feeds/${memberId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

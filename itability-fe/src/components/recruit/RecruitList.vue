@@ -12,7 +12,7 @@
 
     const fetchRecruits = async() => {
         try {
-            const response = await fetch("http://localhost:8000/board-service/recruit/list");
+            const response = await fetch("${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/list");
 
             if (!response.ok) {
                 throw new Error('Error!');
@@ -34,7 +34,7 @@
 
     const fetchRecruitInfos = async(id) => {
 
-        const response = await fetch(`http://localhost:8000/board-service/member_recruits/list/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/list/${id}`);
         const data = await response.json();
 
         return data.length;
@@ -42,14 +42,14 @@
 
     const fetchCategoryList = async(id) => {
 
-        const response = await fetch(`http://localhost:8000/board-service/recruit/recruit-category/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/recruit-category/${id}`);
         const data = await response.json();
         
         return data;
     }
 
     // const fetchSkill = async(id) => {
-    //     const response = await fetch(`http://localhost:8000/board-service/recruit/recruit-skill/${id}`);
+    //     const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/recruit-skill/${id}`);
     //     const data = await response.json();
     //     console.log(data)
     //     state.skillList = data;

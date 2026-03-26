@@ -90,7 +90,7 @@ public class RecruitController {
 
 
 //        return ResponseEntity.ok(recruitDTO);
-        return ResponseEntity.ok("/localhost:5173/recruit");
+        return ResponseEntity.ok("/recruit");
     }
 
     @PutMapping("/modify/{recruitId}")
