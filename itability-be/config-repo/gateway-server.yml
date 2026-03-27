@@ -1,0 +1,27 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: member-service
+          uri: lb://ITABILITY-MEMBER-SERVICE
+          predicates:
+            - Path=/member-service/**
+          filters:
+            - StripPrefix=1
+        - id: board-service
+          uri: lb://ITABILITY-BOARD-SERVICE
+          predicates:
+            - Path=/board-service/**
+          filters:
+            - StripPrefix=1
+        - id: report-service
+          uri: lb://ITABILITY-REPORT-SERVICE
+          predicates:
+            - Path=/report-service/**
+          filters:
+            - StripPrefix=1
+  jwt:
+    secret: '{cipher}7794928e6b754e26ba0ee30b9df487f15e05684bb929c8918f5e2d8cbda46aaab0a6c83b2b5884f1414f5462fc00d8e0'

@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  elasticsearch:
+    uris: http://localhost:9200
+
+mybatis:
+  mapper-locations: classpath:com/itability/boardservice/recruitment/repository/*.xml
+
+webdriver:
+  chrome:
+    driver: /usr/local/bin/chromedriver

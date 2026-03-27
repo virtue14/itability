@@ -1,0 +1,27 @@
+# 모든 서비스 공통 설정
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/itability
+    username: '{cipher}94cd19f17283e42fcd18b79f35b851d23487a70a07a89b7ff51f1a1cce6db4f9'
+    password: '{cipher}9ae9db97018f5e388994d68e432b9d011b9ac8772893bbba3555343b3e82b96b'
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+    show-sql: false
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+gateway:
+  url: localhost:8000

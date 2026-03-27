@@ -1,97 +1,98 @@
-# 💡 itAbility
+# itAbility Backend
 
-## 목차
-<details>
-<summary>목차 접기/펼치기</summary>
-- [개발자 소개](#개발자-소개)
-- [프로젝트 소개](#프로젝트-소개)
-- [개발 기간](#개발-기간)
-- [WBS](#wbs)
-- [소프트웨어 아키텍처](#소프트웨어-아키텍처)
-- [요구사항 정의서](#요구사항-정의서)
-- [기능 정의서](#기능-정의서)
-- [DB 모델링](#db-모델링) I
-- [테이블 정의서](#테이블-정의서)
-- [단위 테스트 결과 보고서](#단위-테스트-결과-보고서)
-</details>
+IT 개발자를 위한 커리어 성장 및 커뮤니티 플랫폼
 
-<br>
+## 프로젝트 구조
 
-## 개발자 소개
+```
+itability-be/
+├── eureka-server/       # 서비스 디스커버리 (8761)
+├── config-server/       # 설정 중앙 관리 (8888)
+├── gateway-server/      # API 게이트웨이 (8000)
+├── board-service/       # 게시판, 모집, 크롤링, 검색 (8081)
+├── member-service/      # 회원, OAuth2, 마이페이지 (8082)
+├── report-service/      # 신고, 블랙리스트 (8083)
+├── config-repo/         # 서비스별 설정 파일
+├── docker-compose.yml   # 인프라 (MariaDB, Elasticsearch)
+└── .env                 # Docker/Config Server용 환경변수 (Git 미포함)
+```
 
-- 🍊김규린: 게시글 및 댓글 구현
-- 🍎박경덕: 로그인 기능 구현
-- 🍐박고은: 모집글 및 신청, 관리 구현
-- 🍉서승엽: 신고, 블랙리스트, 팔로우 기능 구현
-- 🍓이현우; 마이패이지 기능 구현
+## 시작하기
 
-<br>
+### 1. .env 설정
 
-## 프로젝트 소개
+`itability-be/`에 `.env` 파일 생성 후 `.env`의 `ENCRYPT_KEY` 사용
 
-### 1. 목적
-    
-주니어 개발자와 시니어 개발자의 소통을 활성화할 수 있는 공간을 구성한다.
-    
-### 2. 기능
-  1. 자유롭게 정보 공유, 소통이 가능한 게시판
-        
-        사용자들은 피드(게시판)에 자유롭게 글을 작성, 수정 할 수 있다. 피드 제목, 피드 내용을 작성할 수 있다. 다른 사용자들은 해당 게시글을 조회, 반응(좋아요,즐겨찾기) 추가 그리고 댓글을 작성하여 소통할 수 있다. 
-        
-  2. 모집글 (스터디, 외주)
-        
-        사용자들은 모집글에 목적에 따라 스터디 또는 외주 모집글을 작성할 수 있다. 모집글 제목, 내용, 모집 인원, 모집 기간, 요구 기술 스택, 분야를 선택할 수 있다. 다른 사용자들은 해당 모집글을 조회, 모집 신청을 할 수 있다. 신청 후 모집글 작성자는 해당 신청을 수락 또는 거절을 할 수 있다. 모집 인원이 충족되거나 모집 기간이 지나게 되면 사용자들은 해당 모집을 신청할 수 없다. 
-        
-  3. 이력서(경력, 분야, 학력, 기술스택)
-        
-        사용자는 마이페이지에서 자신의 경력, 분야, 학력, 기술스택을 추가, 수정할 수 있다. 경력은 사용자의 회사 경력들을 추가,수정할 수 있다. 분야는 사용자가 해당하는 개발 분야들을 선택할 수 있다. 학력은 사용자의 최종 학력을 추가할 수 있다. 기술 스택은 사용자가 사용한 경험이 있거나 현재 사용중인 기술스택들을 선택할 수 있다.
-        
-    
-  4. 신고
-        
-        사용자는 서비스 정책에 위반되는 악의적, 폭력적, 선정적인  피드, 댓글, 모집글들을 신고할 수 있다. 신고가 누적되어 일정 수치를 벗어나게 되면 해당 작성글은 삭제되고 작성한 사용자는 블랙리스트로 처리가 되어 정책에 따른 기간동안 글을 작성할 수 없다. 블랙리스트가 누적 될수록 사용자의 블랙리스트 기간은 증가한다.
-        
-    
-### 3. 기대효과
-    
-   - 개발자들 간 상호작용이 활성화 되면서 많은 개발 관련 정보, 사용자의 불편사항, 개선사항 등의 정보들이 발생할 것이다. 이 정보들을 통해 더 나은 서비스를 구축하고, 개발 관련 정보를 통합하여 사용자에게 제공하는 새로운 기능을 추가할 수 있을 것으로 기대한다.
-    
+```env
+DB_PORT=3306
+DB_NAME=itability
+DB_PASSWORD=<DB 비밀번호>
+ELASTICSEARCH_PORT=9200
+ENCRYPT_KEY=<암호화 키>
+```
 
-<br>
+### 2. 인프라 실행
 
-## 개발 기간
-- 2024년 2월 7일 ~ 2024년 3월 28일
-<br>
+```bash
+docker compose up -d        # MariaDB + Elasticsearch 실행
+docker compose ps           # 상태 확인
+docker compose down         # 중지
+docker compose down -v      # 중지 + 데이터 삭제
+```
 
+### 3. 서비스 실행 (순서 필수)
 
+```
+1) Eureka Server    → 서비스 등록/발견
+2) Config Server    → 설정 제공 (ENCRYPT_KEY 필요)
+3) 나머지 서비스     → Config Server에서 설정을 받아 기동
+```
 
-## WBS
-<img src="https://github.com/beyond-sw-camp/be04-2nd-3team-itAbility/assets/22255663/04ec3f18-cdc1-4e43-ba8e-7b22b71cc6dd">
-<br>
+IntelliJ: Config Server의 Run Configuration > Environment Variables에 `ENCRYPT_KEY=<키값>` 추가
 
-## 소프트웨어 아키텍처
-<img src="https://github.com/beyond-sw-camp/be04-2nd-3team-itAbility/assets/22255663/34673def-a6e0-4eb4-85b5-f121cf1f4599">
-<br>
+터미널:
+```bash
+cd eureka-server && ./gradlew bootRun
+cd config-server && ENCRYPT_KEY=<키값> ./gradlew bootRun
+cd gateway-server && ./gradlew bootRun
+cd board-service && ./gradlew bootRun
+cd member-service && ./gradlew bootRun
+cd report-service && ./gradlew bootRun
+```
 
-## DDD
-<img src="https://github.com/beyond-sw-camp/be04-2nd-3team-itAbility/assets/22255663/47ac65d0-6a9a-4d63-8f9d-f5348d48a3f0">
-<img src="https://github.com/beyond-sw-camp/be04-2nd-3team-itAbility/assets/22255663/24ff154a-ef98-4f42-8fe6-14ec479b53ba">
+### 4. 실행 확인
 
-
-## 요구사항 정의서
-<img src = "https://github.com/kyulin-Kim/newRepo/assets/107897788/d4e23f2d-9f4a-4862-a774-d9c6bfa97aea" width="700%" height = "300%">
-<br>
-
-## DB 모델링
-<img src = "https://github.com/kyulin-Kim/testRepo/assets/107897788/195c914c-c0e7-4cf3-9132-d18cdc920a2f" width="700%" height = "300%"> 
-<br>
-
-## Rest-API 설계
-<img src="https://github.com/beyond-sw-camp/be04-2nd-3team-itAbility/assets/22255663/69df9a16-045d-4615-afd2-5412363a0df2">
-<br>
-
-## 단위 테스트 결과 보고서
-<img src = "https://github.com/kyulin-Kim/newRepo/assets/107897788/73be1b74-dba0-4b8f-ad44-14983a454909" width="700%" height = "300%"> 
+- Eureka 대시보드: http://localhost:8761
+- Config 설정 조회: `curl http://localhost:8888/gateway-server/default`
+- Gateway 라우팅: `http://localhost:8000/{서비스명}/**`
 
 ---
-<br>
+
+## Config Server 암/복호화
+
+> Config Server는 Swagger를 지원하지 않음 (Config Server의 경로 매핑이 Swagger 경로를 가로채기 때문)
+
+`config-repo/`의 `'{cipher}...'` 값은 암호화된 비밀값이며, Config Server가 `ENCRYPT_KEY`로 복호화 후 각 서비스에 전달
+
+### 암호화 (Config Server 실행 중)
+
+```bash
+curl -X POST http://localhost:8888/encrypt -d "암호화할_값"
+# 출력: a1b2c3d4e5f6...
+
+# config-repo yml에 적용
+# password: '{cipher}a1b2c3d4e5f6...'
+```
+
+### 복호화 확인
+
+```bash
+# 서비스별 설정 전체 조회 (복호화된 상태로 반환)
+curl http://localhost:8888/itability-member-service/default
+```
+
+### 주의
+
+- **URL, 경로, 포트**는 암호화 시 값 손상 → 평문 유지
+- **비밀번호, API Key, Secret**만 암호화 대상
+- 팀 전원 **동일한 ENCRYPT_KEY** 사용 필수

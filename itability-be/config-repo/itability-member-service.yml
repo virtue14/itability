@@ -1,0 +1,59 @@
+server:
+  port: 8082
+
+spring:
+  jwt:
+    secret: '{cipher}7794928e6b754e26ba0ee30b9df487f15e05684bb929c8918f5e2d8cbda46aaab0a6c83b2b5884f1414f5462fc00d8e0'
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: '{cipher}8df1d896ed3027f814e426e8910272dc8a4fcd17a987caff22184c5cea02c4705fc35a1c9f91da5b2df6760789cd1c8a41533e97493382d637cde0cdf095495d0eb3ffcd2aea248201e6a02ea374b4f80f9ea1bef184a60a16798164b9b31c95'
+            client-secret: '{cipher}34dfb746562d463ef06a0b17feded3fe571881cdcd171a07dd48179103db30403de168bab50ca6cc9bea02631a69d20cc3c3978299cdef31cf1b73c0b9f8b23e'
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+          naver:
+            client-id: '{cipher}ce926c44be224e39dd99fea593d8b1147071985cc3ba40f61b9d4b9e1daf3ae8a691be74b2aec35f67b8976e3b1c31d6'
+            client-secret: '{cipher}43c6bdc63810d65ee1550b4213708ab2afd649c21a775e98a350fa8af35d882dcd73721999bcbe2ca04a923942ca4e11'
+            client-name: Naver
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: name, email, profile_image
+          kakao:
+            client-id: '{cipher}c4727f71abea87376ecef02183d6670114f540c963de4cc1619d27b14408f9c20164eb499ccceb6608e2e0a0e70421ad'
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: profile_nickname, account_email, profile_image
+            client-authentication-method: client_secret_post
+          github:
+            client-id: ''
+            client-secret: ''
+            scope: user:email, read:user
+        provider:
+          naver:
+            authorization-uri: https://nid.naver.com/oauth2.0/authorize
+            token-uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user-name-attribute: response
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  cloud:
+    gcp:
+      storage:
+        bucket: '{cipher}9ba978d065f26a2e198d3879d90eb2dd34b102b6e4a7d127ada80ffbc32337eb'
+        project-id: '{cipher}2c80cbd86169aef26211471872c5e27ab64c91b9da8539a85c278966fa78e339e88d07a6b58b7b0efdffd7ed56b109ef'
+        credentials:
+          location: '{cipher}e818bd44a7c6d61670f9a28f0e313ca4d3c14853e42b528e7f4cf8408411efa6abf15bab1740060dd546be8bb8987f74'
+
+app:
+  frontend-url: http://localhost:5173
+
+ftp:
+  server: '{cipher}a2bf151d176f195d9d27bdb142fc7b2bb71a62809cd3b30aed6fc0a18bc9ebdf'
+  port: 21
+  name: '{cipher}98709708e0cafaf684dd891099942493e5e13a22ea88811b1417fc20f6195585ba29ce28c87d812fce75297ecaf87b7a'
+  password: '{cipher}592de4c9e1a090c80dfad84c069effb7a80b8d171d7f972a01a7ec2b6638cb282cb58a3689c06001e4110efc7503350f'

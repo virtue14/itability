@@ -1,8 +1,6 @@
 ### 직접설정 ###
 .idea/
-application.yml
-.env
-.env.*
+.env*
 
 HELP.md
 .gradle
@@ -42,7 +40,7 @@ out/
 ### VS Code ###
 .vscode/
 
-*.yml
-member-service/src/main/resources/itability-418007-0c2a47d403c7.json
-board-service/src/main/java/com/team3/boardservice/recruitment/controller/RecruitController.java.rej
-member-service/src/main/resources/itability-418007-0c2a47d403c7.json
+### GCP 인증 파일 ###
+**/*credentials*.json
+**/itability-*.json
+*.rej
