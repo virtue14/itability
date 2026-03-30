@@ -1,0 +1,17 @@
+name: 이슈 등록
+description: 기능 요청, 버그 신고, 개선 제안 등
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 내용
+      description: 이슈 생성 후 사이드바에서 Labels, Assignee를 지정해 주세요.
+      placeholder: |
+        ## 개요
+        어떤 작업이 필요한지 설명해 주세요.
+
+        ## 작업 내용
+        - 항목 1
+        - 항목 2
+    validations:
+      required: true

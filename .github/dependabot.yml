@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /itability-fe
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/board-service
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/member-service
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/report-service
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/gateway-server
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/config-server
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: gradle
+    directory: /itability-be/eureka-server
+    schedule:
+      interval: weekly
