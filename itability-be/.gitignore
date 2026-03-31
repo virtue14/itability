@@ -1,6 +1,6 @@
 ### 직접설정 ###
 .idea/
-.env*
+.env
 
 HELP.md
 .gradle
