@@ -7,9 +7,12 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
     server: {
+      watch: {
+        usePolling: env.VITE_USE_POLLING === 'true'
+      },
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL || 'http://localhost:8000',
+          target: env.VITE_API_BASE_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         }
