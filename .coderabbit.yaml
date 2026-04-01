@@ -40,7 +40,7 @@ reviews:
 
   # 라벨 자동 추천 및 적용
   suggested_labels: true
-  auto_apply_labels: false
+  auto_apply_labels: true
 
   # 리뷰어 자동 추천 및 배정
   suggested_reviewers: false
