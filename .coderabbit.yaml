@@ -128,9 +128,9 @@ reviews:
     languagetool:
       enabled: false
 
-    # JavaScript/TypeScript AST 패턴 매칭
+    # JavaScript/TypeScript AST 패턴 매칭 (보안 필수 규칙 활성화)
     ast-grep:
-      enabled: true
+      essential_rules: true
 
     # Shell 스크립트 검사
     shellcheck:
