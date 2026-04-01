@@ -1,0 +1,178 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+# 리뷰 코멘트 언어
+language: "ko"
+
+# 리뷰 톤 (최대 250자) — 건설적이고 간결한 피드백
+tone_instructions: "간결하고 건설적으로 리뷰해주세요. 버그, 보안, 성능 이슈를 우선적으로 지적하고, 개선 방향을 함께 제시해주세요."
+
+# 베타 기능 비활성화
+early_access: false
+
+reviews:
+  # 리뷰 강도 — chill: 버그/보안/로직 중심, assertive: 스타일/네이밍까지 포함
+  profile: "chill"
+
+  # PR 요약을 자동 생성
+  high_level_summary: true
+
+  # Walkthrough 코멘트를 접을지 여부
+  collapse_walkthrough: true
+
+  # 변경 파일 요약 포함
+  changed_files_summary: true
+
+  # 시퀀스 다이어그램 생성
+  sequence_diagrams: false
+
+  # 코드 리뷰 예상 소요 시간 표시
+  estimate_code_review_effort: true
+
+  # 연결된 이슈와의 관련성 평가
+  assess_linked_issues: true
+
+  # 관련 이슈/PR 추천
+  related_issues: true
+  related_prs: true
+
+  # 라벨 자동 추천 및 적용
+  suggested_labels: true
+  auto_apply_labels: false
+
+  # 리뷰어 자동 추천 및 배정
+  suggested_reviewers: false
+  auto_assign_reviewers: false
+
+  # 리뷰 중 로딩 메시지에 포춘 쿠키 표시
+  in_progress_fortune: false
+
+  # Walkthrough에 시(poem) 포함
+  poem: false
+
+  # 리뷰에서 제외할 파일 패턴
+  path_filters:
+    - "!**/*.lock"
+    - "!**/node_modules/**"
+    - "!**/dist/**"
+    - "!**/*.min.js"
+    - "!**/*.min.css"
+    - "!**/.gradle/**"
+    - "!**/build/**"
+    - "!**/*.png"
+    - "!**/*.jpg"
+    - "!**/*.ico"
+
+  # 경로별 리뷰 가이드
+  path_instructions:
+    - path: "itability-fe/**"
+      instructions: |
+        Vue 3 + Vite 프로젝트입니다.
+        - 환경변수는 import.meta.env.VITE_* 로 접근
+        - 환경변수 기본값 폴백 금지 (예: env.KEY || "기본값")
+        - console.log 남아있는지 확인
+    - path: "itability-be/**"
+      instructions: |
+        Spring Boot 3.2 + Spring Cloud MSA 프로젝트입니다.
+        - 각 서비스는 독립 빌드/배포 구조 (멀티모듈 아님)
+        - 비밀값은 Config Server {cipher} 암호화 사용
+        - 미사용 import 확인
+    - path: "**/.env.example"
+      instructions: |
+        환경변수 템플릿 파일입니다.
+        - 실제 비밀값(API 키, 비밀번호)이 포함되어 있지 않은지 확인
+        - .env 변경 시 .env.example도 함께 수정되었는지 확인
+    - path: ".github/**"
+      instructions: |
+        CI/CD 워크플로우 파일입니다.
+        - secrets 노출 여부 확인
+        - 액션 버전 고정 여부 확인
+
+  # 자동 리뷰 설정
+  auto_review:
+    # PR 생성 시 자동 리뷰 실행
+    enabled: true
+
+    # push할 때마다 변경분 재리뷰
+    auto_incremental_review: true
+
+    # WIP, DNM 키워드가 제목에 있으면 리뷰 건너뜀
+    ignore_title_keywords:
+      - "WIP"
+      - "DNM"
+
+    # Draft PR은 리뷰하지 않음
+    drafts: false
+
+    # Dependabot PR은 리뷰 건너뜀 (자동 머지로 처리)
+    ignore_usernames:
+      - "dependabot[bot]"
+
+  # 린터/분석 도구 설정
+  tools:
+    # 보안 취약점 (API 키, 비밀번호 노출) 탐지
+    gitleaks:
+      enabled: true
+
+    # YAML 문법 검사
+    yamllint:
+      enabled: true
+
+    # Markdown 문법 검사
+    markdownlint:
+      enabled: true
+
+    # 맞춤법/문법 검사
+    languagetool:
+      enabled: false
+
+    # JavaScript/TypeScript AST 패턴 매칭
+    ast-grep:
+      enabled: true
+
+    # Shell 스크립트 검사
+    shellcheck:
+      enabled: true
+
+    # GitHub Actions 워크플로우 검증 (yamllint보다 정확)
+    actionlint:
+      enabled: true
+
+    # JavaScript/TypeScript 린트
+    eslint:
+      enabled: true
+
+# 채팅 설정 (PR 코멘트에서 @coderabbitai로 대화)
+chat:
+  # 채팅 응답에 아트(이모지/ASCII) 포함
+  art: false
+
+  # 비조직 멤버도 채팅 허용
+  allow_non_org_members: true
+
+  # @mention 없이도 자동 응답
+  auto_reply: true
+
+# 지식 베이스 설정
+knowledge_base:
+  # 웹 검색으로 추가 컨텍스트 수집
+  web_search:
+    enabled: true
+
+  # 코드 가이드라인 문서 참조
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/CLAUDE.md"
+      - "**/.claude/rules/*.md"
+
+  # 학습 범위 — auto: 로컬+글로벌 자동 판단
+  learnings:
+    scope: "auto"
+
+  # 이슈 연결 범위
+  issues:
+    scope: "auto"
+
+  # PR 연결 범위
+  pull_requests:
+    scope: "auto"
