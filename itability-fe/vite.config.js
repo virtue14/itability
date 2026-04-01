@@ -5,6 +5,9 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
+  if (!env.VITE_API_BASE_URL) {
+    throw new Error('Missing required env: VITE_API_BASE_URL')
+  }
   return {
     server: {
       watch: {
