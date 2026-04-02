@@ -72,7 +72,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             feeds.value = data;
         })
         .catch(error => {

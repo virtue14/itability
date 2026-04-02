@@ -27,10 +27,6 @@ const routes = [
         component: FeedCreate
     },
     {
-        path: '/login',
-        component: Login
-    },
-    {
         path: '/mypage',
         component: MyPageMain
     },
@@ -48,12 +44,12 @@ const routes = [
         component: Jobs
     },
     {
-        path: '/recruit/:recruitId',
-        component: RecruitDetailPage
-    },
-    {
         path: '/recruit/regist',
         component: RecruitRegistPage
+    },
+    {
+        path: '/recruit/:recruitId',
+        component: RecruitDetailPage
     }
 ]
 

@@ -21,4 +21,17 @@
  a {
   text-decoration: none;
  }
+ main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ }
+</style>
+
+<style>
+ #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ }
 </style>

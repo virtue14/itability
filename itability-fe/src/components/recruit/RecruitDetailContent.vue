@@ -46,11 +46,10 @@
     //       throw new Error('Network response was not ok');
     //   }
 
-    axios.post('${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/regist', postData)
+    axios.post(`${import.meta.env.VITE_API_BASE_URL}/board-service/member_recruits/regist`, postData)
       .then(response => {
           alert('신청 완료');
           
-        console.log(response.data);
         const useRouter = useRouter();
         useRouter.push(response.data);
       })

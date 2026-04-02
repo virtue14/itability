@@ -1,40 +1,40 @@
 <template>
   <div class="main-container">
     <main class="main-content">
-      <h1 class="main-title">itAbility</h1>
+      <img src="@/assets/logo.png" alt="itAbility" class="main-logo" />
       <p class="main-description">
-        <span style="color: black">
-          기술의 경계를 넘어서는 열정이 모이는 공간! 소통하며, 지식을 나누고 협업할 수 있는 커뮤니티 기능들을 경험해 보세요!
-        </span>
-        <br/>
-        <span class="description-highlight">
-          무한한 가능성의 세계로 여러분을 초대합니다!!!
-        </span>
+        소통하며 지식을 나누고 협업할 수 있는<br/>
+        IT 개발자 커뮤니티, 무한한 가능성의 세계로 초대합니다!
       </p>
-      <div class="login-options">
-        <a :href="`${apiBaseUrl}${oauth2KakaoUrl}`">
-          <button class="login-button kakao">
-            <img :src="`https://cdn.builder.io/api/v1/image/assets/TEMP/6e110c0b5914cf81733fe37fd095abbc74aa3efbe03e75f3237645c450b2a557?apiKey=${builderApiKey}&`" alt="Kakao Logo" class="login-icon"/>
-            <span class="login-text">카카오 계정으로 계속하기</span>
-          </button>
+
+      <div class="login-form">
+        <div class="input-group">
+          <input type="email" v-model="email" placeholder="이메일을 입력해 주세요" class="login-input" />
+        </div>
+        <div class="input-group">
+          <input type="password" v-model="password" placeholder="비밀번호를 입력해 주세요" class="login-input" />
+        </div>
+        <button class="login-btn" @click="onLogin">로그인하기</button>
+      </div>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">SNS 계정으로 간편하게 시작하기</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="social-icons">
+        <a :href="`${apiBaseUrl}${oauth2GoogleUrl}`" class="social-icon-link">
+          <img src="@/assets/google_login.png" alt="구글 로그인" class="social-login-btn" />
         </a>
-        <a :href="`${apiBaseUrl}${oauth2NaverUrl}`">
-          <button class="login-button naver">
-            <img :src="`https://cdn.builder.io/api/v1/image/assets/TEMP/efe01e57f84117e169b6d1f3e9f6cc33a06bca5e1d541366743700b0965762fd?apiKey=${builderApiKey}&`" alt="Naver Logo" class="login-icon"/>
-            <span class="login-text">네이버 계정으로 계속하기</span>
-          </button>
+        <a :href="`${apiBaseUrl}${oauth2KakaoUrl}`" class="social-icon-link">
+          <img src="@/assets/kakao_login.png" alt="카카오 로그인" class="social-login-btn" />
         </a>
-        <a :href="`${apiBaseUrl}${oauth2GoogleUrl}`">
-          <button class="login-button google">
-            <img :src="`https://cdn.builder.io/api/v1/image/assets/TEMP/0bdf84874416a8a8d7a3a2606eb5ed0de55efd7accab07c17a73daf18c9ee964?apiKey=${builderApiKey}&`" alt="Google Logo" class="login-icon"/>
-            <span class="login-text">구글 계정으로 계속하기</span>
-          </button>
+        <a :href="`${apiBaseUrl}${oauth2GithubUrl}`" class="social-icon-link">
+          <img src="@/assets/github_login.png" alt="깃허브 로그인" class="social-login-btn" />
         </a>
-        <a :href="`${apiBaseUrl}${oauth2GithubUrl}`">
-          <button class="login-button github">
-            <img src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566899596/noticon/slhw4nu8hybreryigopq.png" alt="Github Logo" class="login-icon"/>
-            <span class="login-text">깃허브 계정으로 계속하기</span>
-          </button>
+        <a :href="`${apiBaseUrl}${oauth2NaverUrl}`" class="social-icon-link">
+          <img src="@/assets/naver_login.png" alt="네이버 로그인" class="social-login-btn" />
         </a>
       </div>
     </main>
@@ -47,156 +47,136 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-.main-title {
-  text-align: center;
-  letter-spacing: -0.44px;
-  background: linear-gradient(180deg, #c9e1f2 37%, #dac9f2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 140px;
-  font: 700 44px/150% Inter, sans-serif;
-}
-
-@media (max-width: 991px) {
-  .main-title {
-    margin-top: 40px;
-  }
+.main-logo {
+  width: 180px;
+  object-fit: contain;
 }
 
 .main-description {
-  color: #585050;
+  color: #888;
   text-align: center;
-  letter-spacing: -0.16px;
-  background: linear-gradient(90deg, #c9e1f2 34%, #dac9f2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 43px;
-  font: 400 16px/24px Jua, sans-serif;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font: 400 14px/1.6 Inter, sans-serif;
 }
 
-@media (max-width: 991px) {
-  .main-description {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-}
-
-.description-highlight {
-  font-size: 20px;
-}
-
-.login-options {
+.login-form {
+  width: 100%;
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  margin-top: 90px;
+  gap: 10px;
 }
 
-@media (max-width: 991px) {
-  .login-options {
-    margin-top: 40px;
-  }
+.input-group {
+  width: 100%;
 }
 
-.login-button {
-  border-radius: 10px;
-  display: flex;
-  width: 360px;
-  max-width: 100%;
-  gap: 13px;
-  font-size: 16px;
-  color: #000;
-  font-weight: 700;
-  letter-spacing: -0.16px;
-  line-height: 150%;
-  padding: 12px 79px;
-}
-
-@media (max-width: 991px) {
-  .login-button {
-    padding: 0 20px;
-  }
-}
-
-.login-button.kakao {
-  background-color: #ffde00;
-}
-
-.login-button.naver {
-  background-color: #03c75a;
-}
-
-.login-button.google {
-  background-color: #f7f7f9;
-}
-
-.login-icon {
-  aspect-ratio: 1;
-  object-fit: auto;
-  object-position: center;
-  width: 24px;
-}
-
-.login-text {
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
   font-family: Inter, sans-serif;
-  flex-grow: 1;
-  flex-basis: auto;
-  margin: auto 0;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-input:focus {
+  border-color: #c9e1f2;
+}
+
+.login-input::placeholder {
+  color: #aaa;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(96deg, #c9e1f2 35%, #dac9f2 100%);
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider-text {
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.social-icon-link {
+  cursor: pointer;
+}
+
+.social-login-btn {
+  height: 44px;
+  object-fit: contain;
 }
 </style>
-
-
-
 
 <script setup>
 import { ref } from 'vue';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-const builderApiKey = import.meta.env.VITE_BUILDER_API_KEY;
 const oauth2KakaoUrl = import.meta.env.VITE_OAUTH2_KAKAO_URL;
 const oauth2NaverUrl = import.meta.env.VITE_OAUTH2_NAVER_URL;
 const oauth2GoogleUrl = import.meta.env.VITE_OAUTH2_GOOGLE_URL;
 const oauth2GithubUrl = import.meta.env.VITE_OAUTH2_GITHUB_URL;
 
-// API 호출 시 사용할 프록시 기반 URL
-const API_BASE_URL = apiBaseUrl;
+const email = ref('');
+const password = ref('');
 
-// 페이지 리다이렉션을 위한 함수
-async function redirectToSocialLogin(provider) {
-  try {
-    // Fetch API를 사용하여 소셜 로그인 URL을 가져온 후 리다이렉트 처리
-    const response = await fetch(`${API_BASE_URL}/member-service/oauth2/authorization/${provider}`, {
-      method: 'GET',
-      credentials: 'include' // 쿠키를 포함시키기 위한 설정
-    });
-    if (response.ok) {
-      // 응답이 성공적인 경우, 응답의 URL로 페이지를 리다이렉트
-      window.location.href = response.url;
-    } else {
-      console.error(`${provider} 로그인 요청 실패:`, response.statusText);
-    }
-  } catch (error) {
-    console.error(`${provider} 로그인 요청 중 오류 발생:`, error);
-  }
-}
-
-// 카카오 로그인 버튼 클릭 시 호출될 함수
-const onKakaoLogin = () => redirectToSocialLogin('kakao');
-
-// 네이버 로그인 버튼 클릭 시 호출될 함수
-const onNaverLogin = () => redirectToSocialLogin('naver');
-
-// 구글 로그인 버튼 클릭 시 호출될 함수
-const onGoogleLogin = () => redirectToSocialLogin('google');
+const onLogin = () => {
+  // TODO: 이메일/비밀번호 로그인 구현
+};
 </script>

@@ -29,8 +29,6 @@
             const data = await response.json();
             state.skillList = data;
 
-            console.log(state.skillList);
-
         } catch (error) {
             console.error('Fetch error:', error.message);
         }
