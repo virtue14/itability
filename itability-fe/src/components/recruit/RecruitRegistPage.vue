@@ -52,6 +52,8 @@
   import { useRouter } from 'vue-router';
   import axios from 'axios';
 
+  const router = useRouter();
+
   const recruitType = ref('O'); // 외주가 기본 선택되도록 설정
   const recruitTitle = ref('');
   const recruitContent = ref('');
@@ -77,8 +79,7 @@
     .then(response => {
         alert('등록이 완료되었습니다.');
         
-        const useRouter = useRouter();
-        useRouter.push(response.data);
+        router.push(response.data);
       })
       .catch(error => {
         console.error('오류 발생:', error);

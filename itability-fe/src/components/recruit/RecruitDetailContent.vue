@@ -24,7 +24,10 @@
 
 <script setup>
   import { defineProps } from "vue";
+  import { useRouter } from "vue-router";
   import axios from "axios";
+
+  const router = useRouter();
 
   const applyRecruit = async () => {
     const postData = {
@@ -50,8 +53,7 @@
       .then(response => {
           alert('신청 완료');
           
-        const useRouter = useRouter();
-        useRouter.push(response.data);
+        router.push(response.data);
       })
       .catch(error => {
           console.error('오류 발생', error);
