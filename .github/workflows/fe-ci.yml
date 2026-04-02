@@ -5,7 +5,21 @@ on:
     branches: [develop, main]
 
 jobs:
+  detect-fe-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            frontend:
+              - 'itability-fe/**'
+
   build:
+    needs: detect-fe-changes
+    if: needs.detect-fe-changes.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:

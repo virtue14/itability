@@ -5,7 +5,7 @@ on:
     branches: [develop, main]
 
 jobs:
-  detect-changes:
+  detect-be-changes:
     runs-on: ubuntu-latest
     outputs:
       board-service: ${{ steps.filter.outputs.board-service }}
@@ -33,8 +33,8 @@ jobs:
               - 'itability-be/config-server/**'
 
   build-board-service:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.board-service == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.board-service == 'true'
     runs-on: ubuntu-latest
     name: Build board-service
     steps:
@@ -49,8 +49,8 @@ jobs:
         run: ./gradlew build -x test
 
   build-member-service:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.member-service == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.member-service == 'true'
     runs-on: ubuntu-latest
     name: Build member-service
     steps:
@@ -65,8 +65,8 @@ jobs:
         run: ./gradlew build -x test
 
   build-report-service:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.report-service == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.report-service == 'true'
     runs-on: ubuntu-latest
     name: Build report-service
     steps:
@@ -81,8 +81,8 @@ jobs:
         run: ./gradlew build -x test
 
   build-gateway-server:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.gateway-server == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.gateway-server == 'true'
     runs-on: ubuntu-latest
     name: Build gateway-server
     steps:
@@ -97,8 +97,8 @@ jobs:
         run: ./gradlew build -x test
 
   build-eureka-server:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.eureka-server == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.eureka-server == 'true'
     runs-on: ubuntu-latest
     name: Build eureka-server
     steps:
@@ -113,8 +113,8 @@ jobs:
         run: ./gradlew build -x test
 
   build-config-server:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.config-server == 'true'
+    needs: detect-be-changes
+    if: needs.detect-be-changes.outputs.config-server == 'true'
     runs-on: ubuntu-latest
     name: Build config-server
     steps:
