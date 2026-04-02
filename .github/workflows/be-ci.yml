@@ -3,36 +3,127 @@ name: Backend CI
 on:
   pull_request:
     branches: [develop, main]
-    paths:
-      - 'itability-be/**'
 
 jobs:
-  build:
+  detect-changes:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        service:
-          - board-service
-          - member-service
-          - report-service
-          - gateway-server
-          - eureka-server
-          - config-server
+    outputs:
+      board-service: ${{ steps.filter.outputs.board-service }}
+      member-service: ${{ steps.filter.outputs.member-service }}
+      report-service: ${{ steps.filter.outputs.report-service }}
+      gateway-server: ${{ steps.filter.outputs.gateway-server }}
+      eureka-server: ${{ steps.filter.outputs.eureka-server }}
+      config-server: ${{ steps.filter.outputs.config-server }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            board-service:
+              - 'itability-be/board-service/**'
+            member-service:
+              - 'itability-be/member-service/**'
+            report-service:
+              - 'itability-be/report-service/**'
+            gateway-server:
+              - 'itability-be/gateway-server/**'
+            eureka-server:
+              - 'itability-be/eureka-server/**'
+            config-server:
+              - 'itability-be/config-server/**'
 
-    name: Build ${{ matrix.service }}
-
+  build-board-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.board-service == 'true'
+    runs-on: ubuntu-latest
+    name: Build board-service
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
+      - run: chmod +x itability-be/board-service/gradlew
+      - name: Build
+        working-directory: itability-be/board-service
+        run: ./gradlew build -x test
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x itability-be/${{ matrix.service }}/gradlew
+  build-member-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.member-service == 'true'
+    runs-on: ubuntu-latest
+    name: Build member-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: chmod +x itability-be/member-service/gradlew
+      - name: Build
+        working-directory: itability-be/member-service
+        run: ./gradlew build -x test
 
-      - name: Build ${{ matrix.service }}
-        working-directory: itability-be/${{ matrix.service }}
+  build-report-service:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.report-service == 'true'
+    runs-on: ubuntu-latest
+    name: Build report-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: chmod +x itability-be/report-service/gradlew
+      - name: Build
+        working-directory: itability-be/report-service
+        run: ./gradlew build -x test
+
+  build-gateway-server:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.gateway-server == 'true'
+    runs-on: ubuntu-latest
+    name: Build gateway-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: chmod +x itability-be/gateway-server/gradlew
+      - name: Build
+        working-directory: itability-be/gateway-server
+        run: ./gradlew build -x test
+
+  build-eureka-server:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.eureka-server == 'true'
+    runs-on: ubuntu-latest
+    name: Build eureka-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: chmod +x itability-be/eureka-server/gradlew
+      - name: Build
+        working-directory: itability-be/eureka-server
+        run: ./gradlew build -x test
+
+  build-config-server:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.config-server == 'true'
+    runs-on: ubuntu-latest
+    name: Build config-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: chmod +x itability-be/config-server/gradlew
+      - name: Build
+        working-directory: itability-be/config-server
         run: ./gradlew build -x test
