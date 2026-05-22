@@ -75,7 +75,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             recruits.value=data;
         })
         .catch(error => {
@@ -144,7 +143,6 @@
                 return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     waitMembers.value=data;
                 })
                 .catch(error => {
@@ -163,7 +161,6 @@
             })
             .then(response => {
                 if(!response.ok) {
-                    console.log('응답 not OK');
                 }
             })
             showWaitMembers();
@@ -180,7 +177,6 @@
             })
             .then(response => {
                 if(!response.ok) {
-                    console.log('응답 not OK');
                 }
             })
             showWaitMembers();

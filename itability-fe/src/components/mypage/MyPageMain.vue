@@ -135,9 +135,7 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             follow.value.following = data.following;
-            console.log(follow.value.following);
             follow.value.followingCount = data.length;
         })
         .catch(error => {
@@ -152,7 +150,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             follow.value.follower = data.follower;
             follow.value.followerCount = data.length;
         })
@@ -167,9 +164,6 @@
 const fetchData = async () => {
     const cookies = document.cookie; // 현재 페이지의 쿠키를 가져옵니다.
 
-    console.log('cookies:', document.cookie);
-    console.log('cookies:', cookies);
-    
     const options = {
         method: 'GET',
         // headers: {
@@ -184,7 +178,6 @@ const fetchData = async () => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             member.value.image_url = decodeURIComponent(data.image);
             member.value.name = data.name;
             member.value.nickname = data.nickname;
@@ -239,7 +232,6 @@ const fetchData = async () => {
             return response;
         })
         .then(data => {
-            console.log('Image URL:', data);
             fetchData();
             
         })
@@ -286,7 +278,6 @@ const fetchData = async () => {
             return response.json();
         })
         .then(data => {
-            console.log('Response:', data);
             // 처리 완료 후 필요한 로직 구현
             fetchData();
         })

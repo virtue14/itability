@@ -62,7 +62,6 @@ const GetAllSkill = async()=>{
     return response.json();
   })
       .then(data => {
-        console.log(data);
         // skills.value = data;
         // console.log(skills.value);
       })

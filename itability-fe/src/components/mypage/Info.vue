@@ -176,7 +176,6 @@
     })
     .then(data => {
         // 서버 응답 처리
-        console.log('Response:', data);
         // 추가적인 작업 수행 (예: 경력 추가 성공 메시지 표시)
 
         location.reload();
@@ -205,7 +204,6 @@
     })
     .then(data => {
         // 서버 응답 처리
-        console.log('Response:', data);
         // 추가적인 작업 수행 (예: 경력 추가 성공 메시지 표시)
 
         location.reload();
@@ -214,7 +212,7 @@
         console.error('Error:', error);
     });
 };
-  
+
   const skills = ref([]);
 
   const GetAllSkill = async()=>{
@@ -225,9 +223,7 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             skills.value = data;
-            console.log(skills.value);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -237,14 +233,12 @@
     const addSkill = (skill)=> {
         const index = skills.value.findIndex(s => s.id == skill.id);
         SkillForRequest.value.push(skill);
-        console.log(SkillForRequest.value);
         skills.value.splice(index, 1);   
     
     }
     const eraseSkill = (skill)=> {
       const index = skills.value.findIndex(s => s.id == skill.id);
         skills.value.push(skill);
-        console.log(skills.value);
         SkillForRequest.value.splice(index, 1);   
     }
 
@@ -271,7 +265,6 @@
             return response.json();
         })
         .then(data => {
-            console.log('Response:', data);
             OffSkillPopUp();
         })
         .catch(error => {
@@ -289,9 +282,7 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             AllRecCate.value = data;
-            console.log(AllRecCate.value);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -301,20 +292,17 @@
     const addRecCate = (recCate)=> {
         const index = AllRecCate.value.findIndex(s => s.id == recCate.id);
         RecCateForRequest.value.push(recCate);
-        console.log(RecCateForRequest.value);
         AllRecCate.value.splice(index, 1);   
     }
     const eraseRecCate = (recCate)=> {
       const index = AllRecCate.value.findIndex(s => s.id == recCate.id);
         AllRecCate.value.push(recCate);
-        console.log(AllRecCate.value);
         RecCateForRequest.value.splice(index, 1);   
     }
 
     
     const saveRecCate = async() => {
 
-        console.log(RecCateForRequest.value);
     // 서버에 전송할 데이터 형식인 SkillEntity의 리스트를 생성
         const requestRcruit = RecCateForRequest.value.map(recruit => {
             return {
@@ -336,8 +324,6 @@
             
         })
         .then(data => {
-            console.log('Response:', data);
-            
         })
         .catch(error => {
             console.error('Error:', error);

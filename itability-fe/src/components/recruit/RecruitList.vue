@@ -12,7 +12,7 @@
 
     const fetchRecruits = async() => {
         try {
-            const response = await fetch("${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/list");
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/list`);
 
             if (!response.ok) {
                 throw new Error('Error!');

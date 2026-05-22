@@ -55,7 +55,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             recruits.value=data;
         })
         .catch(error => {

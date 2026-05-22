@@ -12,7 +12,7 @@
 
   import Header from "@/components/Header.vue";
   import Footer from "@/components/Footer.vue";
-  import {RouterLink, RouterView} from "vue-router";
+  import {RouterView} from "vue-router";
 
 </script>
 
@@ -20,5 +20,18 @@
 <style scoped>
  a {
   text-decoration: none;
+ }
+ main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ }
+</style>
+
+<style>
+ #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
  }
 </style>

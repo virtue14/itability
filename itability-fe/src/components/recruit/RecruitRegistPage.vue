@@ -52,6 +52,8 @@
   import { useRouter } from 'vue-router';
   import axios from 'axios';
 
+  const router = useRouter();
+
   const recruitType = ref('O'); // 외주가 기본 선택되도록 설정
   const recruitTitle = ref('');
   const recruitContent = ref('');
@@ -73,12 +75,11 @@
     };
     
     
-    axios.post('${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/regist', postData)
+    axios.post(`${import.meta.env.VITE_API_BASE_URL}/board-service/recruit/regist`, postData)
     .then(response => {
         alert('등록이 완료되었습니다.');
         
-        const useRouter = useRouter();
-        useRouter.push(response.data);
+        router.push(response.data);
       })
       .catch(error => {
         console.error('오류 발생:', error);
