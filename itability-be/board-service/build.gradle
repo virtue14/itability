@@ -51,7 +51,7 @@ dependencies {
     //swagger
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '3.0.3'
 
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.13.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.22.0'
 
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
